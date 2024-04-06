@@ -16,6 +16,8 @@ using WebApplication1.Models.ChartModels.TopOneHundredBarModel;
 using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using Microsoft.VisualBasic;
 
 namespace WebApplication1.Controllers
 {
@@ -374,10 +376,11 @@ namespace WebApplication1.Controllers
                         }) ; 
                     }
                 }
-                myList.ToList().ForEach(c => c.mean = c.animeSumOverAll / c.counter);
-                List<TopOneHundredBarModel> sortedList = myList.
-                     OrderBy(x => x.Year).ToList();
-                return PartialView("_TopAnimeChartPartial",sortedList);
+
+          
+
+
+                return PartialView("_TopAnimeChartPartial",myList);
 
             }
             catch (Exception e)

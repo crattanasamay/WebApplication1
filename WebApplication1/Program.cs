@@ -18,9 +18,11 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 
 // Use Local Connection String if in development
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-    builder.Configuration["LocalAnimeDb"]
-));
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseSqlServer(builder.Configuration["LocalAnimeDb"]
+)) ;
+
+
 
 
 builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth",options =>
