@@ -140,6 +140,7 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Route("AnimeLikedPartial")]
+
         public async Task<IActionResult> AnimeLikedPartial()
         {
             try
@@ -147,7 +148,7 @@ namespace WebApplication1.Controllers
                 // Fix this so DB sorts between below 7 and above 7 return list of count above 7 and below 7
                 if (User.Identity == null) { return null; }
 
-                string conn_string = _configuration["ConnectionStringAzure"];
+                string conn_string = _configuration["LocalAnimeDb"];
                 using (var conn = new SqlConnection(conn_string))
                 {
                     var cmd = conn.CreateCommand();
@@ -171,7 +172,7 @@ namespace WebApplication1.Controllers
                             total = total_liked,
                         };
                         result.Close();
-                        return PartialView("_AnimeLikedPartial", r);
+                        return PartialView("_AnimeLikedPartial", r); // r is not returning anything need to fix later
                     }
 
 
