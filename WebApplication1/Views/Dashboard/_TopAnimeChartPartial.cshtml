@@ -17,16 +17,19 @@
 
             @if (Model == null || !Model.Any())
             {
-                <p>No data available.</p>
-            }
-            else
-            {
-                foreach (var obj in Model)
-                {
-                    @:yearLabels.push("@obj.Year");
-                    @:yearData.push("@obj.counter");
-                    @:yearMeanData.push("@obj.mean");
+                    <p>No data available.</p>
                 }
+                else
+                {
+                    foreach (var obj in Model)
+                    {
+                        if (obj != null)
+                        {
+                            @:yearLabels.push("@obj.Year");
+                            @:yearData.push("@obj.counter");
+                            @:yearMeanData.push("@obj.mean");
+                        }
+                    }
             }
             var ctx = document.getElementById('myChartTwo').getContext('2d');
             var mysChart = new Chart(ctx, {

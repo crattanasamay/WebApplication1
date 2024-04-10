@@ -7,6 +7,7 @@
     $.post("/AnimeLikedPartial/", function (data) {
         $("#MainDashboardView").append(data);
     });
+
     $.post("/AverageScoreTopAnimeChart/", (data) => {
         $("#ChartRowOne").append(data);
     });
@@ -63,17 +64,17 @@ $(document).ready(() => {
     $.post("/UserAnimeChart/", (data) => {
         $("#ChartRowOne").append(data);
     });
+
+    
     $.post("/AverageScoreTopAnimeChart/", (data) => {
         $("#ChartRowOne").append(data);
     });
+    
 
     $.post("/AnimeSeasonGenreChartNav/", function (data) {
         $("#ChartRowTwo").append(data);
     });
 
-    $('div#seasonalAnimeGenreChart a').on('click', function () {
-        console.log("TEST");
-    });
 
 
     

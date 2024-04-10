@@ -338,6 +338,7 @@ namespace WebApplication1.Controllers
             catch (Exception e)
             {
 
+
                 return View("error");
 
             }
@@ -355,7 +356,7 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                var myChartModel = await _myAnimeClient.GetTopOneHundredAnime(); ///// To Fix myChartModel Returning Null need to fix 
+                var myChartModel = await _myAnimeClient.GetTopOneHundredAnime();  
                 List <TopOneHundredBarModel> myList= new(); 
                 Dictionary<int, int> checkList = new(); // Stores the Year key and Index inside myList
                 foreach(var obj in myChartModel)
@@ -377,10 +378,15 @@ namespace WebApplication1.Controllers
                     }
                 }
 
+                
+
+                List<TopOneHundredBarModel> sortedList = new List<TopOneHundredBarModel>();
+                sortedList = myList.OrderBy(U => U.Year).ToList();   
+
           
 
 
-                return PartialView("_TopAnimeChartPartial",myList);
+                return PartialView("_TopAnimeChartPartial",sortedList);
 
             }
             catch (Exception e)
