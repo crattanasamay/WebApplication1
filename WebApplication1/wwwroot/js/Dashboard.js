@@ -60,23 +60,15 @@ $(document).ready(() => {
     $.post("/AnimeLikedPartial/", function (data) {
         $("#MainDashboardView").append(data);
     });
-
     $.post("/UserAnimeChart/", (data) => {
         $("#ChartRowOne").append(data);
     });
-
-    
     $.post("/AverageScoreTopAnimeChart/", (data) => {
         $("#ChartRowOne").append(data);
     });
-    
-
     $.post("/AnimeSeasonGenreChartNav/", function (data) {
         $("#ChartRowTwo").append(data);
     });
-
-
-
     
 });
 function AddMainDashboardView() {

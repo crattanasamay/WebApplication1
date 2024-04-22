@@ -32,10 +32,12 @@ namespace WebApplication1.Controllers
         private readonly IMyAnimeClient _myAnimeClient;
         private readonly ILogger<DashboardController> _logger;
         private readonly IConfiguration _configuration;
+        private readonly AnimeMasterData _animeMasterData;
 
 
         public DashboardController(ApplicationDbContext db, IJikanApiClient jikanAnimeClient, IMyAnimeClient myAnimeClient, ILogger<DashboardController> logger, IConfiguration _iconfig)
         {
+            _animeMasterData = new AnimeMasterData();
             _db = db;
             _jikanAnimeClient = jikanAnimeClient;
             _myAnimeClient = myAnimeClient;
@@ -49,13 +51,10 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                AnimeNavigationModel model = new();
-
-
                 // if user is authenticated make sure to login
                 if (User.Identity.IsAuthenticated)
                 {
-                    return View(model);
+                    return View(_animeMasterData);
                 }
                 // else delete their cookie and redirect to login page
                 await HttpContext.SignOutAsync("MyCookieAuth");

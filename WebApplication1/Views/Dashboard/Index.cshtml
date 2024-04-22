@@ -3,7 +3,7 @@
 
 }
 
-@model AnimeNavigationModel;
+@model AnimeMasterData;
 
 @if(User.Identity.IsAuthenticated){
     <div class="container-fluid" style="position:absolute; min-height: 100vh;">
@@ -27,7 +27,7 @@
                                 @for(int i = 0; i < 3;i++){
                                     for(int j = 0; j < 4;j++){
                                     <li>
-                                        <a class="btn" id="@Model.Seasons[j]_@(Model.CurrentYear - i)"> <span class="d-none d-sm-inline" id="@Model.Seasons[j]_@(Model.CurrentYear - i)">@Model.Seasons[j] @(Model.CurrentYear - i)</span>  </a>
+                                        <a class="btn" id="@Model.Seasons[j]_@(Model.currentYear - i)"> <span class="d-none d-sm-inline" id="@Model.Seasons[j]_@(Model.currentYear - i)">@Model.Seasons[j] @(Model.currentYear - i)</span>  </a>
                                     </li>
                                     }
                                 }

@@ -4,7 +4,7 @@
     {
         public List<string> Seasons { get; set; }  = new(){ "Fall", "Summer", "Spring", "Winter" };
 
-        public int CurrentYear { get; set; } = 2024;
+        public int currentYear { get; set; } = 2024;
 
         public List<string> newSeasons { get; set; } = new() { "Winter","Spring","Summer","Fall"};
 

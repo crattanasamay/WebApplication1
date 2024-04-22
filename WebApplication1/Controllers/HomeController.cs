@@ -11,9 +11,11 @@ namespace WebApplication1.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IJikanApiClient _jikanClient;
         private readonly IMyAnimeClient _myAnimeClient;
+        private readonly AnimeMasterData _animeMasterData;
 
         public HomeController(ILogger<HomeController> logger,IMyAnimeClient myAnimeClient,IJikanApiClient jikanClient) 
         {
+            _animeMasterData = new  AnimeMasterData();
             _myAnimeClient = myAnimeClient;
            _jikanClient = jikanClient;
             _logger = logger;
@@ -40,7 +42,7 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                JikanSeasonModel jikanSeasonModel = await _jikanClient.GetAnimeBySeason("fall", "2023");
+                JikanSeasonModel jikanSeasonModel = await _jikanClient.GetAnimeBySeason(_animeMasterData.currentSeason.ToString(), _animeMasterData.currentYear.ToString());
                 List<Datum> animeSeasonList = _jikanClient.FilterAnime(jikanSeasonModel);
                 return PartialView("_HomePageCarouselPartial",animeSeasonList);
 
@@ -53,7 +55,22 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-        
+
+        [HttpPost]
+        [Route("HomePageAnimeSeasonBanner")]
+        public IActionResult HomePageAnimeSeasonBanner()
+        {
+            try
+            {
+                return PartialView("_HomePageAnimeSeasonBanner", _animeMasterData);
+            }
+            catch (Exception e)
+            {
+
+            }
+            return PartialView();
+
+        }
         public void OnGet()
         {
 
