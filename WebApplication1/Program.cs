@@ -43,7 +43,8 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddSingleton<IJikanApiClient, JikanApiClient>();
 builder.Services.AddSingleton<IMyAnimeClient, MyAnimeClient>();
-builder.Services.AddHttpClient<IMyAnimeClient, MyAnimeClient>(); 
+builder.Services.AddHttpClient<IMyAnimeClient, MyAnimeClient>();
+builder.Services.AddSingleton<IDashboardClient, DashboardClient>();
 
 
 

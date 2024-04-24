@@ -54,7 +54,7 @@ namespace WebApplication1.Controllers
                 // if user is authenticated make sure to login
                 if (User.Identity.IsAuthenticated)
                 {
-                    return View(_animeMasterData);
+                    return View(_animeMasterData); // return model to navigation user the _animeMasterData model
                 }
                 // else delete their cookie and redirect to login page
                 await HttpContext.SignOutAsync("MyCookieAuth");
@@ -81,13 +81,15 @@ namespace WebApplication1.Controllers
         {
             try
             {
+                string season;
+                string year;
                 if (string.IsNullOrEmpty(id))
                 {
                     // handle null
                 }
                 int index = id.IndexOf('_');
-                string season = id.Substring(0,index).ToLower();
-                string year = id.Substring(index + 1);
+                season = id.Substring(0,index).ToLower();
+                year = id.Substring(index + 1);
                 JikanSeasonModel anime = await _jikanAnimeClient.GetAnimeBySeason(season, year);
                 if(anime == null)
                 {
@@ -95,6 +97,8 @@ namespace WebApplication1.Controllers
                 }
           
                 List<Datum> animeList = _jikanAnimeClient.FilterAnime(anime);
+                animeList[0].currentYear = year;
+                animeList[0].currentSeason = season;
                return PartialView("_AnimeSeasonPartial",animeList);
             }
             catch(Exception ex)

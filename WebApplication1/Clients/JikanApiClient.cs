@@ -4,6 +4,7 @@ using Microsoft.DotNet.MSIdentity.Shared;
 using Newtonsoft.Json;
 using Polly.Retry;
 using Polly;
+using WebApplication1.Models;
 
 namespace WebApplication1.Clients
 {
@@ -54,7 +55,7 @@ namespace WebApplication1.Clients
                 for (int i = 0; i < animeList.Count; i++)
                 {
                     var animeItem = animeList[i]; ;
-
+             
                     if (animeItem.rating == "Rx - Hentai")
                     {
                         animeList.RemoveAt(i);

@@ -53,6 +53,8 @@
         public List<object>? explicit_genres { get; set; }
         public List<Theme>? themes { get; set; }
         public List<Demographic>? demographics { get; set; }
+        public string? currentYear { get; set; }   
+        public string? currentSeason { get; set; }  
     }
 
     public class Demographic
